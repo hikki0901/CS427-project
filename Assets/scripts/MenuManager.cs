@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
     private TutorialVerifier tutorialVerifier;
     private AudioManager audioManager;
     private float _currentValue;
-    private string[] scenes = { "CutScenes", "version", "MainMenu", "Main", "LoadingScreen" };
+    private string[] scenes = {"MainMenu", "Main", "LoadingScreen" };
     private bool playGame;
 
     public void LoadNormalMainScene()
@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
         }
         else if (playGame == false)
         {
-            tutorialVerifier.AppearTutorialCanvas();
+            //tutorialVerifier.AppearTutorialCanvas();
             playGame = true;
         }
         else
