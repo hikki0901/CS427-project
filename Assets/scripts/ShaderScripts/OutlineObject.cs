@@ -36,11 +36,11 @@ public class OutlineObject : MonoBehaviour
 
     private void Start () 
     {
-        _renderers = GetComponentsInChildren<Renderer>(); //Gets all the Children Renderers, to get access to their materials
+        _renderers = GetComponentsInChildren<Renderer>();
 
         foreach (Renderer renderer in _renderers)
         {
-            _materials.AddRange(renderer.materials); //Getting access to their materials
+            _materials.AddRange(renderer.materials);
         }
         if (IsInCorrectScene() == false) return;
         masterTowerTowerScript = GameObject.FindWithTag("GameMaster").GetComponent<InstancesManager>().GetMasterTowerObj().GetComponent<TowerScript>();
@@ -53,14 +53,14 @@ public class OutlineObject : MonoBehaviour
 
     private void Update()
     {
-        _currentColor = Color.Lerp(_currentColor, _targetColor, Time.deltaTime * FadeFactor); //Just some fade in and out effect
+        _currentColor = Color.Lerp(_currentColor, _targetColor, Time.deltaTime * FadeFactor);
 
         for (int i = 0; i < _materials.Count; i++)
         {
-            _materials[i].SetColor("_glowColor", _currentColor); //Changing the color of the aura
+            _materials[i].SetColor("_glowColor", _currentColor);
         }
 
-        if (_currentColor.Equals(_targetColor)) //When to stop the fade
+        if (_currentColor.Equals(_targetColor))
             enabled = false;
     }
 
@@ -68,28 +68,12 @@ public class OutlineObject : MonoBehaviour
     {
         if (IsInCorrectScene() == false)
             return;
-        if ( IsThisIcosphere() == true)
-        {
-            if ( masterTowerTowerScript.IsPlayerInThisTower() == false )
-            {
-                return;
-            }
-        }
-        _targetColor = GlowColor; //If the mouse is on the collider, select the color to glow
+        _targetColor = GlowColor;
         enabled = true;
     }
 
     private void OnMouseExit()
     {
-        _targetColor = _relyColor; //If the mouse left the collider, make the aura ~black~ some base color, so the effect won't appear
-        enabled = true;
-    }
-
-    private bool IsThisIcosphere ()
-    {
-        if (gameObject.GetComponent<SphereRotator>() == null)
-            return false;
-        else
-            return true;
+        _targetColor = _relyColor; 
     }
 }

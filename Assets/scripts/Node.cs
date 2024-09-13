@@ -9,10 +9,6 @@ public class Node : MonoBehaviour {
 	public GameObject destroyEffect;
 	public GameObject deathNode;
 	public float towerDist = 2.2f;
-    //public GameObject[] buildEffect;
-    //public GameObject[] buildSample;
-
-    //private Material originalMaterial;
     private DeathManager deathManager;
     private TowerManager towerManager;
     private BuildManager buildManager;
@@ -23,7 +19,6 @@ public class Node : MonoBehaviour {
     private GameObject towerToBuild;
     private GameObject gameMaster;
     private GameObject tower;
-    private SphereShop sphereShop;
     private Shop shopScript;
 
     private bool isAlreadBuilt;
@@ -34,7 +29,6 @@ public class Node : MonoBehaviour {
         if (IsInCorrectScene())
         {
             gameMaster = GameObject.FindGameObjectWithTag("GameMaster");
-            sphereShop = GameObject.FindGameObjectWithTag("Icosphere").GetComponent<SphereShop>();
             mouseCursorManager = gameMaster.GetComponent<MouseCursorManager>();
             deathManager = gameMaster.GetComponent<DeathManager>();
             buildManager = gameMaster.GetComponent<BuildManager>();
@@ -71,7 +65,6 @@ public class Node : MonoBehaviour {
                 {
                     return;
                 }
-                //if the towerToBuild variable is null dont do anything 
                 if (buildManager.GetTowerToBuild() == null)
                 {
                     return;
@@ -99,12 +92,11 @@ public class Node : MonoBehaviour {
         {
             if (!deathManager.IsDead())
             {
-                //Avoid pointing to something with a UI element in front of it
                 if (EventSystem.current.IsPointerOverGameObject())
                 {
                     return;
                 }
-                //if the towerToBuild variable is null dont do anything 
+
                 if (buildManager.GetTowerToBuild() == null)
                 {
                     return;
@@ -136,8 +128,6 @@ public class Node : MonoBehaviour {
                         Destroy(eff, 2f);
                     }
                 }
-                //StartCoroutine (EventInstantiator ());
-
                 mouseCursorManager.SetIdleCursor();
 
                 BuildTower();
@@ -148,7 +138,6 @@ public class Node : MonoBehaviour {
 
 	void BuildTower ()
     {
-		//StopCoroutine (EventInstantiator ());
 		towerToBuild = buildManager.GetTowerToBuild ();
 		tower = (GameObject)Instantiate (currentBuildingTower, transform.position, transform.rotation);
 		tower.transform.rotation = Quaternion.Euler (0,0,0);
@@ -157,13 +146,5 @@ public class Node : MonoBehaviour {
         buildManager.SetSelectionTowerToBuild(null);
         towerManager.TowerDiselected();
         isAlreadBuilt = true;
-	}
-
-	/// <summary>
-	/// Tells the sphere shop tower to build.
-	/// </summary>
-	private void TellSphereShopTowerToBuild()
-    {
-		sphereShop.SetTowerToBuild (towerToBuild);
 	}
 }

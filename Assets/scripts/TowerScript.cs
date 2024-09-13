@@ -268,9 +268,6 @@ public class TowerScript : MonoBehaviour
             if (IsPlayerInThisTower())
                 return;
 
-            if (GetComponent<SearchCenterPlace>() != null)
-                gameMaster.GetComponent<InstancesManager>().SetResearchTowerOfTheTime(null);
-
             GameObject deathEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetDeathEffect(), transform.position, Quaternion.identity);
             Destroy(deathEffect, 2.5f);
             Destroy(gameObject);

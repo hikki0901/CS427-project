@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-//This class will be used by the UI bottom to buy a new tower
 public class Shop : MonoBehaviour 
 {
     [SerializeField] private Color normalTextColor = Color.blue;
@@ -54,13 +53,9 @@ public class Shop : MonoBehaviour
         towerManager.TowerSelected();
     }
 
-    public void PurcheseTower3()  // Researcher
+    public void PurcheseTower3()
     {
         indexOfThisTower = 3;
-
-        if (gameMaster.GetComponent<InstancesManager>().GetResearchTowerOfTheTime() != null)
-            return;
-        gameMaster.GetComponent<InstancesManager>().SetResearchTowerOfTheTime(buildManager.tower[indexOfThisTower].GetComponent<SearchCenterPlace>());
 
         if (!soulsCounter.CanBuild(indexOfThisTower))
             return;
@@ -86,32 +81,17 @@ public class Shop : MonoBehaviour
         return indexOfThisTower;
     }
 
-	/// <summary>
-	/// Determines whether this instance can build tower the specified index.
-	/// </summary>
-	/// <returns><c>true</c> if this instance can build tower the specified index; otherwise, <c>false</c>.</returns>
-	/// <param name="index">Index.</param>
 	public bool CanBuildTower(int index)
     {
 		return canBuildTower [index];
 	}
 
-	// follow the monkey 
-//	public void PurcheseTower0(){
-//		int indexOfThisTower = 0;
-//		if ( !soulsCounter.CanBuild (indexOfThisTower) )
-//			return;
-//		buildManager.SetTowerToBuild (buildManager.Tower[indexOfThisTower]);
-//	}
-
-	//Will set the store up:
 	private void Awake(){
 		numOfButtons = transform.childCount;
 		SetTheShopButtons ();
 		SetCanBuildTower ();
 	}
 
-	//get the buttons gameobjects
 	private void SetTheShopButtons()
     {
 		buttons = new Transform[numOfButtons];
@@ -121,9 +101,6 @@ public class Shop : MonoBehaviour
 		}
 	}
 
-	/// <summary>
-	/// Sets the can build tower.
-	/// </summary>
 	private void SetCanBuildTower()
     {
 		canBuildTower = new bool[numOfButtons];
@@ -133,7 +110,6 @@ public class Shop : MonoBehaviour
 		}
 	}
 
-	//Instantiate and initialize 
 	private void Start()
     {
         gameMaster = GameObject.Find("GameMaster");
@@ -144,19 +120,11 @@ public class Shop : MonoBehaviour
         shopManager = gameMaster.GetComponent<ShopManager>();
 	}
 
-	/// <summary>
-	/// Update this instance.
-	/// every frame verify if the player have enought soul to 
-	/// buy each tower
-	/// </summary>
 	private void Update()
     {
 		UpdateCanBuildTower ();
 	}
 
-	/// <summary>
-	/// Updates the can build tower.
-	/// </summary>
 	private void UpdateCanBuildTower()
     {
 		for (int i = 0 ; i < buildManager.tower.Length; i ++)
