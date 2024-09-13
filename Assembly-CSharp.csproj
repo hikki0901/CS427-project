@@ -105,12 +105,10 @@
      <Compile Include="Assets\scripts\AnimationScripts\Instantiator.cs" />
      <Compile Include="Assets\scripts\AnimationScripts\Reintegrate.cs" />
      <Compile Include="Assets\scripts\AudioManager.cs" />
-     <Compile Include="Assets\scripts\AudioRecorder.cs" />
      <Compile Include="Assets\scripts\BuildManager.cs" />
      <Compile Include="Assets\scripts\CameraControllerScript.cs" />
      <Compile Include="Assets\scripts\CantBuildScript.cs" />
      <Compile Include="Assets\scripts\CanvasManager.cs" />
-     <Compile Include="Assets\scripts\CutSceneManager.cs" />
      <Compile Include="Assets\scripts\DayTimer.cs" />
      <Compile Include="Assets\scripts\DeathManager.cs" />
      <Compile Include="Assets\scripts\DescriptionCanvasFinder.cs" />

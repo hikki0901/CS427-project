@@ -65,8 +65,7 @@ public class AudioManager : MonoBehaviour
     private void Awake () 
     {
         //Prevent of having two audioManager in one scene:
-        if (instance == null)
-            instance = this;
+        if (instance == null) instance = this;
         else
         {
             Destroy(gameObject);
@@ -77,15 +76,13 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //if there is no sound dont do anything
-        if (sounds == null)
-            return;
+        if (sounds == null) return;
 
         foreach(Sound s in sounds)
         {
 
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
