@@ -57,7 +57,7 @@ public class ExtraFunctionalities : MonoBehaviour {
 					advanceTimeImage.enabled = !advanceTimeImage.enabled;
 
 				if (Time.timeScale == 1) {
-					Time.timeScale = 3;
+					Time.timeScale = 10;
 					return;
 				}
 

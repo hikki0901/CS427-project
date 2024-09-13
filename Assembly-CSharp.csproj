@@ -118,7 +118,6 @@
      <Compile Include="Assets\scripts\FaderScript.cs" />
      <Compile Include="Assets\scripts\Fading.cs" />
      <Compile Include="Assets\scripts\GrassDistance.cs" />
-     <Compile Include="Assets\scripts\HighScores.cs" />
      <Compile Include="Assets\scripts\InstancesManager.cs" />
      <Compile Include="Assets\scripts\LeaderBoardControllerScript.cs" />
      <Compile Include="Assets\scripts\Loader.cs" />

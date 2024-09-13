@@ -37,7 +37,7 @@ public class Fading : MonoBehaviour {
 		GameObject gObj = GameObject.Find ("PlayerScoreCanvas");
 		StartCoroutine (FadeCanvasComponents(-1,gObj));
 	}
-
+    /*
 	public void AppearConnectionErrorMessageCanvas(){
         leaderBoardControllerScript.SetConnectionErrorCanvas(true);
         GameObject gObj = GameObject.Find ("ConnectionErrorCanvas");
@@ -66,7 +66,7 @@ public class Fading : MonoBehaviour {
 		GameObject gObj = GameObject.Find ("LeaderBoadCanceledCanvas");
 		StartCoroutine (FadeCanvasComponents(1,gObj));
 	}
-
+    */
     IEnumerator FadeCanvasComponents(int inOrOut, GameObject gObj)
     {
         int numOfChild = gObj.transform.childCount;
