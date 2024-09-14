@@ -56,7 +56,7 @@ public class TowerSpell : MonoBehaviour {
                     if (Random.Range(0f, 1f) < pm.GetSoulBonusChance())
                     {
                         SoulsCounter.instance.AddSouls(invoker.tag);
-                        Debug.Log("Soul de bonus!");
+                        Debug.Log("Bonus soul");
                     }
                 }
 

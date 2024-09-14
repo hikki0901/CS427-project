@@ -55,7 +55,7 @@ public class CameraControllerScript : MonoBehaviour
 	private void MoveScreen()
     {
 		if ( 
-            Input.GetKey ("w") || 
+            Input.GetKey(KeyCode.W) || 
 			( Input.mousePosition.y >= (Screen.height - panBoardThickness) && 
              Input.mousePosition.y <= Screen.height)
 			|| Input.GetKey(KeyCode.UpArrow)
@@ -63,7 +63,7 @@ public class CameraControllerScript : MonoBehaviour
         {
 			GoForward ();
 		}
-		if ( Input.GetKey ("s") || 
+		if ( Input.GetKey (KeyCode.S) || 
 			( Input.mousePosition.y <= panBoardThickness && 
              Input.mousePosition.y >= 0f ) ||
 			Input.GetKey(KeyCode.DownArrow)
@@ -72,7 +72,7 @@ public class CameraControllerScript : MonoBehaviour
 			GoBack ();
 		}
 		if ( 
-            Input.GetKey ("d") || 
+            Input.GetKey (KeyCode.D) || 
 			( Input.mousePosition.x >= Screen.width - panBoardThickness && Input.mousePosition.x <= Screen.width) ||
 			Input.GetKey(KeyCode.RightArrow)
            ) 
@@ -80,7 +80,7 @@ public class CameraControllerScript : MonoBehaviour
 			GoRight ();
 		}
 		if (
-            Input.GetKey ("a") || 
+            Input.GetKey (KeyCode.A) || 
 			(Input.mousePosition.x <= panBoardThickness && Input.mousePosition.x >= 0f) ||
 			Input.GetKey(KeyCode.LeftArrow)
         ) 
@@ -121,21 +121,21 @@ public class CameraControllerScript : MonoBehaviour
 
 	private void GoForward () 
     {
-		transform.Translate ( Vector3.forward * panSpeed * Time.deltaTime, Space.Self );
+		transform.Translate ( Vector3.forward * panSpeed * Time.unscaledDeltaTime, Space.Self );
 	}
 
 	private void GoBack () 
     {
-		transform.Translate ( Vector3.back * panSpeed * Time.deltaTime, Space.Self );
+		transform.Translate ( Vector3.back * panSpeed * Time.unscaledDeltaTime, Space.Self );
 	}
 
 	private void GoLeft () 
     {
-		transform.Translate ( Vector3.left * panSpeed * Time.deltaTime, Space.Self );
+		transform.Translate ( Vector3.left * panSpeed * Time.unscaledDeltaTime, Space.Self );
 	}
 
 	private void GoRight () 
     {
-		transform.Translate ( Vector3.right * panSpeed * Time.deltaTime, Space.Self );
+		transform.Translate ( Vector3.right * panSpeed * Time.unscaledDeltaTime, Space.Self );
 	}
 }

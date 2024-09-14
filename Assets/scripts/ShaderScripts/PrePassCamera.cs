@@ -44,5 +44,7 @@ public class PrePassCamera : MonoBehaviour {
             RenderTexture.ReleaseTemporary(rt);
         }
         //After the loop, the blur texture is very blurred
+
+        Graphics.SetRenderTarget(destination);
     }
 }
