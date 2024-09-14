@@ -174,8 +174,6 @@
      <Compile Include="Assets\scripts\TutorialVerifier.cs" />
      <Compile Include="Assets\scripts\Untargetter.cs" />
      <Compile Include="Assets\scripts\UpgradeButtonsManager.cs" />
-     <Compile Include="Assets\scripts\VersionScriptManager.cs" />
-     <Compile Include="Assets\scripts\VersionVerifier.cs" />
      <Compile Include="Assets\scripts\VillageSpawn.cs" />
      <Compile Include="Assets\scripts\VoxelDistance.cs" />
      <Compile Include="Assets\scripts\WaveSpawner.cs" />
@@ -233,11 +231,11 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
      <None Include="Assets\Resources\CompositeShader.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
- <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/Programming/CS427-project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
- </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>D:/Programming/CS427-project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.StandardEvents">
+ <HintPath>D:/Programming/CS427-project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Unity Hub/editor/2018.1.9f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
