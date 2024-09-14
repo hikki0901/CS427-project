@@ -7609,28 +7609,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752391963}
   m_CullTransparentMesh: 1
---- !u!1 &1772532156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5224160659079731811, guid: 7452dd93f32f5844fa52220a42b4a7ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 1968084051}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1772532157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772532156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c0e1f546112b934ea3e621b6536129e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weatherChangeInterval: 300
-  rainDuration: 120
-  bloodMoonDuration: 120
-  rainSound: {fileID: 0}
 --- !u!1 &1801212921 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1969399071226334, guid: da42a4da83762402ab84356f1fafda0e,
@@ -8647,11 +8625,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5224160659079731811, guid: 7452dd93f32f5844fa52220a42b4a7ff,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1772532157}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7452dd93f32f5844fa52220a42b4a7ff, type: 3}
 --- !u!1 &1970350269
 GameObject:
