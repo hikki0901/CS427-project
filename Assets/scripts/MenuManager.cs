@@ -58,8 +58,8 @@ public class MenuManager : MonoBehaviour
 
     public void ExitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
-        Debug.Log("ExitGame called, but quitting is not supported in WebGL.");
+        //UnityEditor.EditorApplication.isPlaying = false;
+        //Debug.Log("ExitGame called, but quitting is not supported in WebGL.");
         Application.Quit();
     }
 
