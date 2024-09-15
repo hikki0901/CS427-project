@@ -6,24 +6,28 @@ public class WeatherScript : MonoBehaviour {
     public float weatherChangeInterval;
     public float rainDuration;
     public AudioClip rainSound;
-    private GameObject rain;
-    public GameObject sun;
+    private ParticleSystem rain;
+    private ParticleSystem lightning;
+    private Vector3 lightningPosition;
+    public Light sun;
 
     private AudioSource[] audioSource;
-    
+
     void Start() {
         if (rainDuration > weatherChangeInterval) {
             throw new Exception("Rain duration must be less than weather change interval");
         }
-        rain = GameObject.Find("Rain");
-        sun = GameObject.Find("Sun");
+        rain = GameObject.Find("Rain").GetComponent<ParticleSystem>();
+		lightning = GameObject.Find("Lightning").GetComponent<ParticleSystem>();
+        lightningPosition = new Vector3(lightning.transform.position.x, lightning.transform.position.y, lightning.transform.position.z);
+        sun = GameObject.Find("Sun").GetComponent<Light>();
         audioSource = GetComponents<AudioSource>();
         StartCoroutine(ChangeWeather());
     }
 
     IEnumerator ChangeWeather() {
         while (true) {
-            // StartCoroutine(Rain());
+            StartCoroutine(Rain());
             yield return new WaitForSeconds(weatherChangeInterval);
             int dice = UnityEngine.Random.Range(1, 10);
             // 30% chance of rain
@@ -34,17 +38,23 @@ public class WeatherScript : MonoBehaviour {
     }
 
     IEnumerator Rain() {
-        ParticleSystem particleSystem = rain.GetComponent<ParticleSystem>();
-        Light light = sun.GetComponent<Light>();
-        float originalIntensity = light.intensity;
-        particleSystem.Play();
+        float originalIntensity = sun.intensity;
+        rain.Play();
         audioSource[0].clip = rainSound;
         audioSource[0].Play();
-        light.intensity = 0.5f;
-        int dice = UnityEngine.Random.Range(0, 1);
+        sun.intensity = 0.5f;
+        StartCoroutine(Lightning());
         yield return new WaitForSeconds(rainDuration);
-        particleSystem.Stop();
+        rain.Stop();
         audioSource[0].Stop();
-        light.intensity = originalIntensity;
+        sun.intensity = originalIntensity;
+    }
+
+    IEnumerator Lightning() {
+        while (true) {
+            lightning.transform.position = new Vector3(lightningPosition.x + UnityEngine.Random.Range(-10, 10), lightningPosition.y, lightningPosition.z + UnityEngine.Random.Range(-10, 10));
+            lightning.Play();
+            yield return new WaitForSeconds(UnityEngine.Random.Range(1, 5));
+        }
     }
 }

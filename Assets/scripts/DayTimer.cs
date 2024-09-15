@@ -7,9 +7,11 @@ public class DayTimer : MonoBehaviour {
 	public float speedFactor;
 	private Light sun;
 	private Light moon;
+	private ParticleSystem lightning;
 	private Color originalMoonColor;
 	private float originalMoonIntensity;
 	private int isBloodMoon; // 0 = neutral, 10 = blood moon, 1-9 = normal moon
+
 
 	void Start () {
 		sun = GameObject.Find("Sun").GetComponent<Light>();
