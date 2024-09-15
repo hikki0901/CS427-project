@@ -467,42 +467,6 @@ PrefabInstance:
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 1344477235}
-    - target: {fileID: 114832654938499062, guid: a0ae3f0160a394622b2556300039986c,
-        type: 3}
-      propertyPath: modules.Array.data[0]
-      value: 
-      objectReference: {fileID: 1026134706115208, guid: e5d97afa5a9024ee7859161d6f52f5d4,
-        type: 3}
-    - target: {fileID: 114832654938499062, guid: a0ae3f0160a394622b2556300039986c,
-        type: 3}
-      propertyPath: modules.Array.data[1]
-      value: 
-      objectReference: {fileID: 1477899113756818, guid: ccbfa8ec0b471422a9a65f1965035c58,
-        type: 3}
-    - target: {fileID: 114832654938499062, guid: a0ae3f0160a394622b2556300039986c,
-        type: 3}
-      propertyPath: modules.Array.data[2]
-      value: 
-      objectReference: {fileID: 1240018192997506, guid: f78a796977fc945c5a895b795db75254,
-        type: 3}
-    - target: {fileID: 114832654938499062, guid: a0ae3f0160a394622b2556300039986c,
-        type: 3}
-      propertyPath: modules.Array.data[3]
-      value: 
-      objectReference: {fileID: 1481481561253658, guid: 330a93796611d49e9983255b99b6b9cb,
-        type: 3}
-    - target: {fileID: 114832654938499062, guid: a0ae3f0160a394622b2556300039986c,
-        type: 3}
-      propertyPath: modules.Array.data[4]
-      value: 
-      objectReference: {fileID: 1493386892467706, guid: 344688f12d92c45d28c569b0cf2da066,
-        type: 3}
-    - target: {fileID: 114832654938499062, guid: a0ae3f0160a394622b2556300039986c,
-        type: 3}
-      propertyPath: modules.Array.data[5]
-      value: 
-      objectReference: {fileID: 1507551564931164, guid: 2a8742ec9b2d04177b097be1290a93d8,
-        type: 3}
     m_RemovedComponents:
     - {fileID: 114772377065291608, guid: a0ae3f0160a394622b2556300039986c, type: 3}
     - {fileID: 114479091355818390, guid: a0ae3f0160a394622b2556300039986c, type: 3}
@@ -1452,44 +1416,6 @@ RectTransform:
   m_AnchoredPosition: {x: -600, y: -507.03473}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!84 &549521649
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1009
-  m_Height: 609
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &554728761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,44 +1896,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!84 &721468585
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 640
-  m_Height: 480
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &724371647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4731,6 +4619,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239734548}
   m_CullTransparentMesh: 1
+--- !u!84 &1249111054
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 999
+  m_Height: 481
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1255491418
 GameObject:
   m_ObjectHideFlags: 0
@@ -6530,7 +6456,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 549521649}
+      objectReference: {fileID: 1249111054}
     - target: {fileID: 20754644307438984, guid: 6849b8a20f320f04dabdfd7ed9070271,
         type: 3}
       propertyPath: m_HDR
@@ -6544,6 +6470,11 @@ PrefabInstance:
     - target: {fileID: 114015713782486726, guid: 6849b8a20f320f04dabdfd7ed9070271,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141531440221642508, guid: 6849b8a20f320f04dabdfd7ed9070271,
+        type: 3}
+      propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2775001452675120588, guid: 6849b8a20f320f04dabdfd7ed9070271,
@@ -6645,6 +6576,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340859835835063198, guid: 6849b8a20f320f04dabdfd7ed9070271,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5453893844638818330, guid: 6849b8a20f320f04dabdfd7ed9070271,
         type: 3}

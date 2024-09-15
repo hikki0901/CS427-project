@@ -20,6 +20,7 @@ public class WeatherScript : MonoBehaviour {
 		lightning = GameObject.Find("Lightning").GetComponent<Light>();
         sun = GameObject.Find("Sun").GetComponent<Light>();
         audioSource = GetComponents<AudioSource>();
+        rain.Stop();
         StartCoroutine(ChangeWeather());
     }
 
