@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class DayTimer : MonoBehaviour {
 	public float speedFactor;
-    public float bloodMoonDuration;
 	private Light sun;
 	private Light moon;
 	private Color originalMoonColor;
