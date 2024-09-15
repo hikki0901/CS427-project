@@ -5,58 +5,46 @@ using UnityEngine;
 public class WeatherScript : MonoBehaviour {
     public float weatherChangeInterval;
     public float rainDuration;
-    public float bloodMoonDuration;
     public AudioClip rainSound;
     private GameObject rain;
-    private GameObject sun;
-    //private AudioSource audioSource;
+    public GameObject sun;
 
-    public enum Weather {
-        Sunny,
-        Rainy,
-        BloodMoon,
-    }
-
+    private AudioSource[] audioSource;
+    
     void Start() {
-        if (bloodMoonDuration > weatherChangeInterval) {
-            throw new Exception("Blood moon duration must be less than weather change interval");
-        }
-        else if (rainDuration > weatherChangeInterval) {
+        if (rainDuration > weatherChangeInterval) {
             throw new Exception("Rain duration must be less than weather change interval");
         }
         rain = GameObject.Find("Rain");
         sun = GameObject.Find("Sun");
-        //audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponents<AudioSource>();
         StartCoroutine(ChangeWeather());
     }
 
     IEnumerator ChangeWeather() {
         while (true) {
+            // StartCoroutine(Rain());
             yield return new WaitForSeconds(weatherChangeInterval);
             int dice = UnityEngine.Random.Range(1, 10);
-            if (dice == 10) {
-                StartCoroutine(BloodMoon());
-            }
-            else if (dice >= 7) {
+            // 30% chance of rain
+            if (dice > 7) {
                 StartCoroutine(Rain());
-            }
+            } 
         }
     }
 
     IEnumerator Rain() {
         ParticleSystem particleSystem = rain.GetComponent<ParticleSystem>();
+        Light light = sun.GetComponent<Light>();
+        float originalIntensity = light.intensity;
         particleSystem.Play();
-        //audioSource.PlayOneShot(rainSound);
+        audioSource[0].clip = rainSound;
+        audioSource[0].Play();
+        light.intensity = 0.5f;
+        int dice = UnityEngine.Random.Range(0, 1);
         yield return new WaitForSeconds(rainDuration);
         particleSystem.Stop();
-        //audioSource.Stop();
-    }
-
-    IEnumerator BloodMoon() {
-        Light light = sun.GetComponent<Light>();
-        Color originalSunColor = light.color;
-        light.color = Color.red;
-        yield return new WaitForSeconds(bloodMoonDuration);
-        light.color = originalSunColor;
+        audioSource[0].Stop();
+        light.intensity = originalIntensity;
     }
 }
