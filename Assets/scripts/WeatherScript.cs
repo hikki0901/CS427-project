@@ -6,11 +6,10 @@ public class WeatherScript : MonoBehaviour {
     public float weatherChangeInterval;
     public float rainDuration;
     public AudioClip rainSound;
+    public AudioClip lightningSound;
     private ParticleSystem rain;
-    private ParticleSystem lightning;
-    private Vector3 lightningPosition;
-    public Light sun;
-
+    private Light lightning;
+    private Light sun;
     private AudioSource[] audioSource;
 
     void Start() {
@@ -18,8 +17,7 @@ public class WeatherScript : MonoBehaviour {
             throw new Exception("Rain duration must be less than weather change interval");
         }
         rain = GameObject.Find("Rain").GetComponent<ParticleSystem>();
-		lightning = GameObject.Find("Lightning").GetComponent<ParticleSystem>();
-        lightningPosition = new Vector3(lightning.transform.position.x, lightning.transform.position.y, lightning.transform.position.z);
+		lightning = GameObject.Find("Lightning").GetComponent<Light>();
         sun = GameObject.Find("Sun").GetComponent<Light>();
         audioSource = GetComponents<AudioSource>();
         StartCoroutine(ChangeWeather());
@@ -27,11 +25,12 @@ public class WeatherScript : MonoBehaviour {
 
     IEnumerator ChangeWeather() {
         while (true) {
-            StartCoroutine(Rain());
+            // DEBUG: StartCoroutine(Rain());
+            // Weather always starts with a clear sky
             yield return new WaitForSeconds(weatherChangeInterval);
-            int dice = UnityEngine.Random.Range(1, 10);
-            // 30% chance of rain
-            if (dice > 7) {
+            int dice = UnityEngine.Random.Range(1, 100);
+            // 35% chance of rain
+            if (dice > 65) {
                 StartCoroutine(Rain());
             } 
         }
@@ -43,7 +42,11 @@ public class WeatherScript : MonoBehaviour {
         audioSource[0].clip = rainSound;
         audioSource[0].Play();
         sun.intensity = 0.5f;
-        StartCoroutine(Lightning());
+        int dice = UnityEngine.Random.Range(1, 3);
+        // 33% chance of lightning
+        if (dice == 3) {
+            StartCoroutine(Lightning());
+        }
         yield return new WaitForSeconds(rainDuration);
         rain.Stop();
         audioSource[0].Stop();
@@ -52,9 +55,17 @@ public class WeatherScript : MonoBehaviour {
 
     IEnumerator Lightning() {
         while (true) {
-            lightning.transform.position = new Vector3(lightningPosition.x + UnityEngine.Random.Range(-10, 10), lightningPosition.y, lightningPosition.z + UnityEngine.Random.Range(-10, 10));
-            lightning.Play();
-            yield return new WaitForSeconds(UnityEngine.Random.Range(1, 5));
+            // Look at some random point below the current position
+            lightning.transform.eulerAngles = new Vector3(
+                UnityEngine.Random.Range(30, 150), 
+                UnityEngine.Random.Range(0, 360),
+                UnityEngine.Random.Range(0, 360)
+            );
+            lightning.enabled = true;
+            audioSource[1].PlayOneShot(lightningSound);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1.0f));
+            lightning.enabled = false;
+            yield return new WaitForSeconds(UnityEngine.Random.Range(10, 30));
         }
     }
 }
