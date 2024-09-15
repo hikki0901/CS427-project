@@ -25,7 +25,7 @@ public class WeatherScript : MonoBehaviour {
 
     IEnumerator ChangeWeather() {
         while (true) {
-            // DEBUG: StartCoroutine(Rain());
+            // StartCoroutine(Rain()); // DEBUG
             // Weather always starts with a clear sky
             yield return new WaitForSeconds(weatherChangeInterval);
             int dice = UnityEngine.Random.Range(1, 100);
@@ -45,13 +45,24 @@ public class WeatherScript : MonoBehaviour {
         sun.intensity = 0.5f;
         int dice = UnityEngine.Random.Range(1, 3);
         // 33% chance of lightning
+        // dice = 3; // DEBUG
         if (dice == 3) {
             StartCoroutine(Lightning());
         }
         yield return new WaitForSeconds(rainDuration);
-        rain.Stop();
+        float volume = audioSource[0].volume;
+        while (audioSource[0].volume > 0 && sun.intensity < originalIntensity) {
+            if (sun.intensity < originalIntensity) {
+                sun.intensity += 0.1f;
+            }
+            if (audioSource[0].volume > 0) {
+                audioSource[0].volume -= 0.1f;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
         audioSource[0].Stop();
-        sun.intensity = originalIntensity;
+        audioSource[0].volume = volume;
+        rain.Stop();
     }
 
     IEnumerator Lightning() {

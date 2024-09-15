@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour {
 
     private bool IsInCorrectScene()
     {
-        return (SceneManager.GetActiveScene().buildIndex != 0 && string.Equals(SceneManager.GetActiveScene().name, "MainMenu") == false);
+        return SceneManager.GetActiveScene().buildIndex != 0 && string.Equals(SceneManager.GetActiveScene().name, "MainMenu") == false;
     }
 
 }

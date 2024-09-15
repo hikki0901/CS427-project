@@ -29,6 +29,7 @@ public class CameraControllerScript : MonoBehaviour
     float posZ;
 
 	private Animator anim;
+    private ParticleSystem rain;
 
 	private void Update ()
     {
@@ -49,11 +50,25 @@ public class CameraControllerScript : MonoBehaviour
         rightRation = (maxXInMaxY - moduleDimension) / maxY;
 
 		anim = GetComponentInChildren<Animator>();
+        rain = gameObject.GetComponentInChildren<ParticleSystem>();
 	}
+
+    private void DisableRainCollision()
+    {
+        ParticleSystem.CollisionModule collision = rain.collision;
+        collision.enabled = false;
+    }
+
+    private void EnableRainCollision()
+    {
+        ParticleSystem.CollisionModule collision = rain.collision;
+        collision.enabled = true;
+    }
 
 	//move the camera white awsd or with mouse in the border
 	private void MoveScreen()
     {
+        bool movement = false;
 		if ( 
             Input.GetKey(KeyCode.W) || 
 			( Input.mousePosition.y >= (Screen.height - panBoardThickness) && 
@@ -61,7 +76,9 @@ public class CameraControllerScript : MonoBehaviour
 			|| Input.GetKey(KeyCode.UpArrow)
            ) 
         {
+            DisableRainCollision();
 			GoForward ();
+            movement = true;
 		}
 		if ( Input.GetKey (KeyCode.S) || 
 			( Input.mousePosition.y <= panBoardThickness && 
@@ -69,7 +86,9 @@ public class CameraControllerScript : MonoBehaviour
 			Input.GetKey(KeyCode.DownArrow)
            ) 
         {
+            DisableRainCollision();
 			GoBack ();
+            movement = true;
 		}
 		if ( 
             Input.GetKey (KeyCode.D) || 
@@ -77,7 +96,9 @@ public class CameraControllerScript : MonoBehaviour
 			Input.GetKey(KeyCode.RightArrow)
            ) 
         {
+            DisableRainCollision();
 			GoRight ();
+            movement = true;
 		}
 		if (
             Input.GetKey (KeyCode.A) || 
@@ -85,8 +106,14 @@ public class CameraControllerScript : MonoBehaviour
 			Input.GetKey(KeyCode.LeftArrow)
         ) 
         {
+            DisableRainCollision();
 			GoLeft ();
+            movement = true;
 		}
+        if (movement == false)
+        {
+            EnableRainCollision();
+        }
 	}
     
 	private void LimitPosition()
@@ -121,21 +148,21 @@ public class CameraControllerScript : MonoBehaviour
 
 	private void GoForward () 
     {
-		transform.Translate ( Vector3.forward * panSpeed * Time.unscaledDeltaTime, Space.Self );
-	}
+		transform.Translate ( panSpeed * Time.unscaledDeltaTime * Vector3.forward, Space.Self );
+    }
 
 	private void GoBack () 
     {
-		transform.Translate ( Vector3.back * panSpeed * Time.unscaledDeltaTime, Space.Self );
-	}
+		transform.Translate ( panSpeed * Time.unscaledDeltaTime * Vector3.back, Space.Self );
+    }
 
 	private void GoLeft () 
     {
-		transform.Translate ( Vector3.left * panSpeed * Time.unscaledDeltaTime, Space.Self );
-	}
+		transform.Translate ( panSpeed * Time.unscaledDeltaTime * Vector3.left, Space.Self );
+    }
 
 	private void GoRight () 
     {
-		transform.Translate ( Vector3.right * panSpeed * Time.unscaledDeltaTime, Space.Self );
-	}
+		transform.Translate ( panSpeed * Time.unscaledDeltaTime * Vector3.right, Space.Self );
+    }
 }

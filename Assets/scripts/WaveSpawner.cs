@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class WaveSpawner : MonoBehaviour {
 
@@ -40,6 +41,8 @@ public class WaveSpawner : MonoBehaviour {
     private Text warningWaveText;
     private ActionManager actionManager;
 
+	[NonSerialized] public float eventMultiplier = 1f;
+
 	/// <summary>
 	/// Sets the module.
 	/// </summary>
@@ -60,7 +63,7 @@ public class WaveSpawner : MonoBehaviour {
     public void StartNextWave()
     {
         waveNumber++;
-        AjustDifficulty();
+        AdjustDifficulty();
         UpdateSoul();
         UpdateLifes();
         StartCoroutine(SpawnWave());
@@ -88,9 +91,9 @@ public class WaveSpawner : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Ajusts the array of enemies for the corrent wave
+	/// Adjusts the array of enemies for the current wave
 	/// </summary>
-	private void AjustArray()
+	private void AdjustArray()
     {
 		int sizeArrEn;
 		int waveNumIdx;
@@ -123,7 +126,7 @@ public class WaveSpawner : MonoBehaviour {
 			else 
             {
 				indexVal += actualVal * mult;
-				mult = mult * 10;
+				mult *= 10;
 			}
 		}
 		auxArr[auxArrIdx] = indexVal;
@@ -142,17 +145,17 @@ public class WaveSpawner : MonoBehaviour {
 	private void killPlayer()
     {
 		for (int i = 0; i < 10; i++)
-			AjustDifficulty ();
+			AdjustDifficulty ();
 	}
 
 	/// <summary>
-	/// Ajusts the difficulty for the next wave
+	/// Adjusts the difficulty for the next wave
 	/// </summary>
-	private void AjustDifficulty()
+	private void AdjustDifficulty()
     {
-		baseSpeed = baseSpeed * SpeedWaveConst;
+		baseSpeed *= SpeedWaveConst * eventMultiplier;
 		baseSpeed = Mathf.Clamp (baseSpeed, 1f, 2f);
-		baseHP = baseHP * HPWaveConst;
+		baseHP *= HPWaveConst * eventMultiplier;
 	}
 
 	private void Awake()
@@ -213,7 +216,7 @@ public class WaveSpawner : MonoBehaviour {
     //Coroutine for the spawn, it delays spawnDelay for each instantiation
     private IEnumerator SpawnWave()
     {
-        AjustArray();
+        AdjustArray();
         actionManager.StartSpawn();
         for (int i = 0; i < thisWaveSpawnEnemies.Length; i++)
         {  
