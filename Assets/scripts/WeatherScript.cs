@@ -39,6 +39,7 @@ public class WeatherScript : MonoBehaviour {
     IEnumerator Rain() {
         float originalIntensity = sun.intensity;
         rain.Play();
+        audioSource[0].loop = true;
         audioSource[0].clip = rainSound;
         audioSource[0].Play();
         sun.intensity = 0.5f;
