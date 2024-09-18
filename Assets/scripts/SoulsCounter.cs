@@ -127,4 +127,21 @@ public class SoulsCounter : MonoBehaviour {
                 return GetKillingValue(i);
         return GetKillingValue (0);
 	}
+
+    public bool SpendSouls()
+    {
+        float soulCost = 2f;  // Cost for right-click attack
+
+        if (souls >= soulCost)
+        {
+            souls -= soulCost;
+            UpdateUI();  // Update UI to reflect the new soul count
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough souls for right-click attack!");
+            return false;
+        }
+    }
 }

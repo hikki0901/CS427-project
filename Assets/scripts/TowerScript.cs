@@ -182,7 +182,7 @@ public class TowerScript : MonoBehaviour
 		fireCountdown -= Time.deltaTime;
 	}
 
-	// Will instantiete the shot and make it fallow the target
+	// Will instantiate the shot and make it follow the target
 	private void Shoot(){
 		GameObject spellGO = Instantiate (bulletPrefab, firePoint.position, firePoint.rotation);
 		TowerSpell towerSpell = spellGO.GetComponent<TowerSpell>();

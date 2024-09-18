@@ -122,5 +122,4 @@ public class Enemy : MonoBehaviour {
     {
         return SceneManager.GetActiveScene().buildIndex != 0 && string.Equals(SceneManager.GetActiveScene().name, "MainMenu") == false;
     }
-
 }

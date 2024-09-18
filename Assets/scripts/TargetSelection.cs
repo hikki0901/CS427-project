@@ -100,8 +100,81 @@ public class TargetSelection : MonoBehaviour {
         }
 	}
 
-	// This.gameObject had been killed by GameObject go
-	void DeathBy (GameObject go)
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1)) // 1 is the right mouse button
+        {
+            // Apply right-click damage
+            TakeDamageByRightClick(10f); // Pass the amount of damage, e.g., 10f
+        }
+    }
+
+    public void TakeDamageByRightClick(float damageAmount)
+    {
+        if (isDead == true) return;
+
+        // Check if player has enough souls
+        if (soulsCounter.GetSouls() < 2)
+        {
+            Debug.Log("Not enough souls for right-click attack!");
+            return;
+        }
+
+        // Deduct 2 souls from the player
+        soulsCounter.SpendSouls();
+
+        // Subtract the damage from HP
+        HP -= damageAmount;
+
+        // Activate health bar if not active
+        if (!enemyHealthBar.activeInHierarchy)
+        {
+            enemyHealthBar.SetActive(true);
+        }
+
+        // Check if HP is 0 or below, indicating death
+        if (HP <= 0)
+        {
+            enemyHealthBar.SetActive(false);
+            isDead = true;
+            DeathByRightClick();
+            return;
+        }
+
+        // Display damage text
+        Text text = AnimateInfo();
+        text.text = "-" + damageAmount;
+        text.color = Color.red;
+        text.fontSize -= 35;
+    }
+
+    void DeathByRightClick()
+    {
+        // Since this is a right-click attack, there is no invoker to assign
+        // Handle death logic here without assigning it to any object
+
+        // Get souls for killing the enemy
+        score = soulsCounter.KillerPrice("RightClick");  // Use "RightClick" as a special tag for right-click kills
+        soulsCounter.KillEnemy(score);
+
+        // Instantiate soul number
+        Text text = AnimateInfo();
+        text.text = "+" + score + " Soul";
+        if (score > 1)
+            text.text = text.text + "s";
+
+        // Instantiate this target's deathEffect and destroy it
+        GameObject effectInstantiated = Instantiate(deathEffect, transform.position, transform.rotation);
+        Destroy(effectInstantiated, 2f);
+
+        // Tell actionManager that the enemy has been killed
+        actionManager.KillEnemy();
+
+        Destroy(gameObject);
+    }
+
+    // This.gameObject had been killed by GameObject go
+    void DeathBy (GameObject go)
 	{
 		// If player was killing this.gameObject
 		if (go.tag == "Player") {
