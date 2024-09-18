@@ -10,6 +10,7 @@ public class TargetSelection : MonoBehaviour {
 	public GameObject enemyHealthBar;
 	public GameObject hpText;
 	public GameObject deathEffect;
+    //public GameObject lightningEffect;
 
     public GameObject soulCanvas;
 
@@ -112,6 +113,9 @@ public class TargetSelection : MonoBehaviour {
     public void TakeDamageByRightClick(float damageAmount)
     {
         if (isDead == true) return;
+
+		GameObject gameMaster = GameObject.FindWithTag("GameMaster");
+        GameObject lightningEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetLightningEffect(), transform.position, Quaternion.identity);
 
         // Check if player has enough souls
         if (soulsCounter.GetSouls() < 2)

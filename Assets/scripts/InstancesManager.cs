@@ -13,6 +13,7 @@ public class InstancesManager : MonoBehaviour {
     [SerializeField] private GameObject researchCanvas = null;
     [SerializeField] private GameObject normalBullet = null;
     [SerializeField] private GameObject deathEffect = null;
+    [SerializeField] private GameObject lightningEffect = null;
 
     //private SearchCenterPlace researchTower = null;
 
@@ -65,7 +66,12 @@ public class InstancesManager : MonoBehaviour {
     {
         return deathEffect;
     }
-    
+
+    public GameObject GetLightningEffect()
+    {
+        return lightningEffect;
+    }
+
     private void Start ()
     {
         normalBullet.GetComponent<SkillsProperties>().SetEffect(null);
