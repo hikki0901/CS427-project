@@ -135,6 +135,8 @@ public class SoulsCounter : MonoBehaviour {
         if (souls >= soulCost)
         {
             souls -= soulCost;
+            GameObject gameMaster = GameObject.FindWithTag("GameMaster");
+            GameObject lightningEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetLightningEffect(), transform.position, Quaternion.identity);
             UpdateUI();  // Update UI to reflect the new soul count
             return true;
         }

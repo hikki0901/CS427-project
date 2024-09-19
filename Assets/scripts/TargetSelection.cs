@@ -114,9 +114,6 @@ public class TargetSelection : MonoBehaviour {
     {
         if (isDead == true) return;
 
-		GameObject gameMaster = GameObject.FindWithTag("GameMaster");
-        GameObject lightningEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetLightningEffect(), transform.position, Quaternion.identity);
-
         // Check if player has enough souls
         if (soulsCounter.GetSouls() < 2)
         {
