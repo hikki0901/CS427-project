@@ -56,34 +56,21 @@ public class TutorialScript : MonoBehaviour
 		canvasGroup.alpha = 0;
 	}
 
-	public IEnumerator WaitForRealSecondsLoad(float time)
-    {
-        float start = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup < start + time)
-        {
-            yield return null;
-        }
-    }
-
-	public Coroutine WaitForRealSeconds (float time) {
-		return StartCoroutine(WaitForRealSecondsLoad(time));
-	}
-
 	private IEnumerator TutorialFlow()
     {
-		yield return WaitForRealSeconds (startCountdown);
+		yield return new WaitForSecondsRealtime (startCountdown);
 		welcomeText.SetActive (true);
 		fadeDir = 1;
 		fade = true;
 
-		yield return WaitForRealSeconds (welcomeTextTime);
+		yield return new WaitForSecondsRealtime (welcomeTextTime);
 		fadeDir = (-1);
-		yield return WaitForRealSeconds (fadeTime);
+		yield return new WaitForSecondsRealtime (fadeTime);
 		welcomeText.SetActive (false);
-		yield return WaitForRealSeconds (Countdown1);
+		yield return new WaitForSecondsRealtime (Countdown1);
 		wasdKeysText.SetActive (true);
 		fadeDir = (1);
-		yield return WaitForRealSeconds (fadeTime);
+		yield return new WaitForSecondsRealtime (fadeTime);
 
 		StartCoroutine(WaitForKeyDown ("w"));
 		StartCoroutine(WaitForKeyDown ("a"));
@@ -92,21 +79,21 @@ public class TutorialScript : MonoBehaviour
 
 		yield return new WaitUntil ( ( ) => cont >= 4 );
 
-		yield return WaitForRealSeconds (Countdown2);
+		yield return new WaitForSecondsRealtime (Countdown2);
 		fadeDir = (-1);
-		yield return WaitForRealSeconds (fadeTime);
+		yield return new WaitForSecondsRealtime (fadeTime);
 		wasdKeysText.SetActive (false);
 
 		for (int i = 0; i < texts.Length; i++) {
 			texts [i].SetActive (true);
 			fadeDir = (1);
-			yield return WaitForRealSeconds (fadeTime + mainCountdown);
+			yield return new WaitForSecondsRealtime (fadeTime + mainCountdown);
 			fadeDir = (-1);
-			yield return WaitForRealSeconds (fadeTime);
+			yield return new WaitForSecondsRealtime (fadeTime);
 			texts [i].SetActive (false);
 		}
 
-		yield return WaitForRealSeconds (mainCountdown);
+		yield return new WaitForSecondsRealtime (mainCountdown);
 
         actionManager.FinishTutorial();
 	}
