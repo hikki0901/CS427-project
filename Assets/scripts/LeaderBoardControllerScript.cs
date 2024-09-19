@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class LeaderBoardControllerScript : MonoBehaviour {
 
     [SerializeField] GameObject playerScoreCanvas;
-    [SerializeField] GameObject connectionErrorCanvas;
     [SerializeField] GameObject offlineScoreCanvas;
     [SerializeField] GameObject leaderBoadCanvas;
     [SerializeField] GameObject leaderBoadCanceledCanvas;

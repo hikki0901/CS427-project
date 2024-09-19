@@ -58,11 +58,13 @@ public class ExtraFunctionalities : MonoBehaviour {
 
 				if (Time.timeScale == 1) {
 					Time.timeScale = 10;
+					GameObject.Find ("FFText").GetComponent<Text>().text = "Fast-Forward >>";
 					return;
 				}
 
 				if (Time.timeScale > 1) {
 					Time.timeScale = 1;
+					GameObject.Find ("FFText").GetComponent<Text>().text = "";
 					return;
 				}
 			}
