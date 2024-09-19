@@ -8,7 +8,7 @@ public class ShopManager : MonoBehaviour
 
     public enum Kind
     {
-        AttackTower, UpgradeTower, AttackTowerUpgrade, UpgradeTowerUpgrade, EffectInfo
+        AttackTower, UpgradeTower, AttackTowerUpgrade, UpgradeTowerUpgrade
     }
 
     public ButtonClass[] GetAttackTowers()

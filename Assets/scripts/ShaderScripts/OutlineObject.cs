@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class OutlineObject : MonoBehaviour 
 {
     [SerializeField] public Color GlowColor;
+
+    [SerializeField] public Color HaloColor;
     public float FadeFactor = 5;
 
     private Renderer[] _renderers;
@@ -13,6 +15,11 @@ public class OutlineObject : MonoBehaviour
     private Color _targetColor;
     private Color _relyColor = Color.black;
     private TowerScript masterTowerTowerScript;
+
+    private bool lockEnabled = false;
+    private bool hovered = false;
+
+    private bool highlighted = false;
 
     public Color _currentColor;
 
@@ -24,7 +31,7 @@ public class OutlineObject : MonoBehaviour
 
     public Color GetGlowColor()
     {
-        return GlowColor;
+        return highlighted ? HaloColor : GlowColor;
     }
 
     public void SetCurrentColor (Color _color)
@@ -64,16 +71,33 @@ public class OutlineObject : MonoBehaviour
             enabled = false;
     }
 
+    public void lockEnable (bool locked = true) {
+        lockEnabled = locked;
+        enabled = true;
+        if (!hovered) setState(lockEnabled);
+    }
+
+    public void setHighlight (bool state) {
+        highlighted = state;
+        if (hovered || lockEnabled) _targetColor = GetGlowColor();
+    }
+
+    private void setState(bool state) {
+        enabled = true;
+        _targetColor = state ? GetGlowColor() : _relyColor;
+    }
+
     private void OnMouseEnter()
     {
         if (IsInCorrectScene() == false)
             return;
-        _targetColor = GlowColor;
-        enabled = true;
+        hovered = true;
+        setState(true);
     }
 
     private void OnMouseExit()
     {
-        _targetColor = _relyColor; 
+        hovered = false;
+        if (!lockEnabled) setState(false);
     }
 }

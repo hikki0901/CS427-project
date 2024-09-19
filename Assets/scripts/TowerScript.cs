@@ -18,6 +18,14 @@ public class TowerScript : MonoBehaviour
 	private PropertiesManager pm;
     private GameObject gameMaster;
     private MouseCursorManager mouseCursorManage;
+    private float boostingTime = -1f;
+
+    private float boostingDuration = 2f;
+    private float boostingRate = 5f;
+
+    private SoulsCounter soulsCounter; 
+
+    private float boostingPrice = 5f;
 
     #region Encapsuling methods
 
@@ -54,6 +62,10 @@ public class TowerScript : MonoBehaviour
         else
             return player.GetComponent<PlayerController>().GetRange();
 	}
+
+    public void setCooldownRateBoost (float rate) {
+        pm.SetCooldownRateBoost(rate);
+    }
 
 	public float GetBurnValue () {
 		return pm.GetBurnRate ();
@@ -108,11 +120,22 @@ public class TowerScript : MonoBehaviour
 
         // Set skill values from prefab
         pm.SetValues(bulletPrefab.GetComponent<SkillsProperties>());
+
+        soulsCounter = SoulsCounter.instance;
 	}
 
 	private void Update () {
 		if (bulletPrefab == null)
 			return;
+
+        // check boosting status
+        if (boostingTime != -1f && Time.time - boostingTime > boostingDuration) {
+            Debug.Log("Boosting duration finished");
+            boostingTime = -1f;
+            pm.SetCooldownRateBoost();
+            transform.GetComponent<OutlineObject>().lockEnable(false);
+            transform.GetComponent<OutlineObject>().setHighlight(false);
+        }
 		
 		//do nothing in case there is no target
 		if (target == null)
@@ -245,10 +268,6 @@ public class TowerScript : MonoBehaviour
             mouseCursorManage.SetGreenCursor();
             return;
         }
-        if ( IsMasterTower() == true )
-        {
-            return;
-        }
     }
 
     private void OnMouseExit()
@@ -260,17 +279,30 @@ public class TowerScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftControl)) && Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (IsMasterTower())
+        if (Input.GetMouseButtonDown(0) && !IsMasterTower() && boostingTime == -1f) {
+            // boost the current tower
+            bool canBoost = soulsCounter.SpendSouls(boostingPrice);
+            if (!canBoost) {
+                Debug.Log("Cannot boost current Tower: Not enough Souls");
                 return;
-
-            if (IsPlayerInThisTower())
-                return;
-
-            GameObject deathEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetDeathEffect(), transform.position, Quaternion.identity);
-            Destroy(deathEffect, 2.5f);
-            Destroy(gameObject);
+            }
+            boostingTime = Time.time;
+            transform.GetComponent<OutlineObject>().lockEnable();
+            transform.GetComponent<OutlineObject>().setHighlight(true);
+            pm.SetCooldownRateBoost(boostingRate);
+            return;
         }
+        // if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.Mouse0))
+        // {
+        //     if (IsMasterTower())
+        //         return;
+
+        //     if (IsPlayerInThisTower())
+        //         return;
+
+        //     GameObject deathEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetDeathEffect(), transform.position, Quaternion.identity);
+        //     Destroy(deathEffect, 2.5f);
+        //     Destroy(gameObject);
+        // }
     }
 }

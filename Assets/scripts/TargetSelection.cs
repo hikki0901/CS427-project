@@ -114,15 +114,15 @@ public class TargetSelection : MonoBehaviour {
     {
         if (isDead == true) return;
 
-        // Check if player has enough souls
-        if (soulsCounter.GetSouls() < 2)
-        {
+		GameObject gameMaster = GameObject.FindWithTag("GameMaster");
+        GameObject lightningEffect = Instantiate(gameMaster.GetComponent<InstancesManager>().GetLightningEffect(), transform.position, Quaternion.identity);
+
+        // Deduct 2 souls from the player
+        bool enoughSouls = soulsCounter.SpendSouls();
+		if (!enoughSouls) {
             Debug.Log("Not enough souls for right-click attack!");
             return;
         }
-
-        // Deduct 2 souls from the player
-        soulsCounter.SpendSouls();
 
         // Subtract the damage from HP
         HP -= damageAmount;

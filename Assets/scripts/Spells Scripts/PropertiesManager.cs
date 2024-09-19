@@ -11,6 +11,8 @@ public class PropertiesManager : MonoBehaviour {
     private float slowTimeChance = 2.5f;
     private bool slowTimeActivation = false;
     private float fatalHitChance = 1f;
+
+	private float cooldownRateBoost = 1f;
     private bool fatalHitActivation = false;
     private float burnRate;
 	private float slowFactor;
@@ -35,8 +37,12 @@ public class PropertiesManager : MonoBehaviour {
 		return damage;
 	}
 
+	public void SetCooldownRateBoost (float rate = 1f) {
+		cooldownRateBoost = rate;
+	}
+
 	public float GetCooldown () {
-		return cooldown;
+		return cooldown / cooldownRateBoost;
 	}
 
 	public float GetRange () {
