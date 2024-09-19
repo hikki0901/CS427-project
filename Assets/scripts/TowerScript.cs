@@ -25,7 +25,7 @@ public class TowerScript : MonoBehaviour
 
     private SoulsCounter soulsCounter; 
 
-    private float boostingPrice = 5f;
+    private float boostingPrice = 30f;
 
     #region Encapsuling methods
 
