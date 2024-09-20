@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0e1f546112b934ea3e621b6536129e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weatherChangeInterval: 300
+  weatherChangeInterval: 240
   rainDuration: 120
   rainSound: {fileID: 8300000, guid: 68fc26aedcb24ef439876a05452c5841, type: 3}
   lightningSound: {fileID: 8300000, guid: c53d13e8049dfbf4d8d36edca34abb1f, type: 3}
